@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1729">
+<title>StudyMind AI</title>
+<style>
+:root{--bg:#081321;--panel:#102238;--panel2:#152c43;--line:#244159;--text:#f3f8fc;--muted:#9db2c5;--teal:#43ddca;--teal2:#1caeaa;--danger:#ff8d8d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1b2e,#07111e 60%);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+header{padding:calc(env(safe-area-inset-top) + 18px) 18px 16px;position:sticky;top:0;background:#0b1729ed;backdrop-filter:blur(16px);z-index:5;border-bottom:1px solid #1c344a}
+.brand{display:flex;align-items:center;justify-content:space-between}.logo{font-size:21px;font-weight:800;letter-spacing:-.6px}.logo span{color:var(--teal)}.pill{font-size:11px;color:var(--teal);border:1px solid #276c70;border-radius:99px;padding:6px 9px}
+main{max-width:760px;margin:auto;padding:18px 16px 110px}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--teal);font-weight:700}.hero{padding:16px 2px 20px}.hero h1{font-size:30px;line-height:1.12;margin:9px 0}.hero p{color:var(--muted);margin:0;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:8px 0 22px}.stat,.card{background:linear-gradient(145deg,#142b42,#0f2135);border:1px solid var(--line);border-radius:17px;padding:14px}.stat b{font-size:22px;display:block}.stat small{color:var(--muted);font-size:11px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 11px}.section-head h2{font-size:17px;margin:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:linear-gradient(145deg,#142d45,#102237);border:1px solid var(--line);border-radius:17px;padding:15px;min-height:112px;text-align:left;color:var(--text);cursor:pointer}.tile .ico{font-size:23px;margin-bottom:12px}.tile strong{display:block;font-size:14px}.tile small{display:block;color:var(--muted);margin-top:5px;line-height:1.35}
+button{font:inherit}.primary{background:var(--teal);color:#06202a;border:0;border-radius:12px;padding:12px 15px;font-weight:750;cursor:pointer}.secondary{background:#19334b;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer}.danger{color:var(--danger)}.wide{width:100%}
+.panel{background:#0e2033;border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}.panel h3{margin:0 0 10px;font-size:16px}
+input,textarea,select{width:100%;background:#091827;border:1px solid #29465e;border-radius:11px;color:var(--text);padding:12px;font:inherit;margin:6px 0 10px}textarea{min-height:120px;resize:vertical}
+label{font-size:12px;color:var(--muted)}.filebox{border:1px dashed #3b7180;border-radius:15px;padding:18px;text-align:center;background:#10283b}.filebox input{border:0;padding:8px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:8;background:#0b1729f2;border-top:1px solid #1d394e;display:flex;justify-content:space-around;padding:9px 5px calc(env(safe-area-inset-bottom) + 8px);backdrop-filter:blur(15px)}
+nav button{background:none;border:0;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 8px}nav button span{font-size:19px}nav button.active{color:var(--teal)}
+.view{display:none}.view.active{display:block}.doc{padding:12px;background:#12283d;border:1px solid var(--line);border-radius:13px;margin:8px 0}.doc strong{display:block}.doc small{color:var(--muted)}
+.flash{min-height:180px;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;font-size:19px;font-weight:650;background:linear-gradient(145deg,#173a50,#10253b);border:1px solid #32727b;border-radius:18px;margin:14px 0;cursor:pointer}
+.answer{background:#132a40;border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;cursor:pointer}.answer.correct{border-color:var(--teal);background:#123b3b}.answer.wrong{border-color:var(--danger)}
+.chatlog{display:flex;flex-direction:column;gap:9px;margin:12px 0}.bubble{padding:12px 14px;border-radius:15px;max-width:90%;line-height:1.45}.bot{background:#17334a;align-self:flex-start}.user{background:#155b5b;align-self:flex-end}
+.empty{color:var(--muted);text-align:center;padding:22px 8px}.smallnote{font-size:11px;color:var(--muted);line-height:1.5}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}main{padding-top:28px}.hero h1{font-size:36px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">StudyMind <span>AI</span></div><div class="pill">DEIN LERNBEREICH</div></div></header>
+<main>
+<section id="home" class="view active">
+ <div class="hero"><div class="eyebrow">DEIN PERSÖNLICHER LERNCOACH</div><h1>Lernen. Verstehen.<br><span style="color:var(--teal)">Bestehen.</span></h1><p>Deine Lernunterlagen, Karteikarten und Übungen an einem Ort.</p></div>
+ <div class="stats"><div class="stat"><b id="docCount">0</b><small>Unterlagen</small></div><div class="stat"><b id="cardCount">0</b><small>Karteikarten</small></div><div class="stat"><b id="doneCount">0</b><small>Gelernt</small></div></div>
+ <div class="section-head"><h2>Was möchtest du tun?</h2></div>
+ <div class="grid">
+  <button class="tile" onclick="show('documents')"><div class="ico">📄</div><strong>Unterlagen</strong><small>PDFs und Texte hinzufügen</small></button>
+  <button class="tile" onclick="show('cards')"><div class="ico">🗂️</div><strong>Karteikarten</strong><small>Wissen aktiv wiederholen</small></button>
+  <button class="tile" onclick="show('quiz')"><div class="ico">✍️</div><strong>Prüfungstraining</strong><small>Teste dein Wissen</small></button>
+  <button class="tile" onclick="show('coach')"><div class="ico">🧠</div><strong>Lerncoach</strong><small>Fragen zu deinen Notizen</small></button>
+  <button class="tile" onclick="show('summary')"><div class="ico">📚</div><strong>Zusammenfassung</strong><small>Wichtiges kompakt lernen</small></button>
+  <button class="tile" onclick="show('plan')"><div class="ico">📅</div><strong>Lernplan</strong><small>Deine nächste Lerneinheit</small></button>
+ </div>
+ <div class="panel"><h3>✨ Dein Lernstart</h3><p class="muted" style="margin-bottom:12px">Füge zuerst ein Skript oder eine PDF hinzu. StudyMind erstellt daraus lokal Lernmaterial auf diesem Gerät.</p><button class="primary" onclick="show('documents')">Unterlage hinzufügen</button></div>
+</section>
+
+<section id="documents" class="view">
+ <div class="hero"><div class="eyebrow">DEINE WISSENSBIBLIOTHEK</div><h1>Unterlagen</h1><p>Importiere PDFs oder Textdateien. Deine Inhalte bleiben in diesem Browser auf deinem Gerät.</p></div>
+ <div class="panel"><h3>📥 Datei importieren</h3><div class="filebox"><div style="font-size:28px">☁️</div><b>PDF oder Textdatei auswählen</b><p class="smallnote">Unterstützt: PDF, TXT und Markdown. Für PDF-Textextraktion wird eine PDF-Bibliothek über das Internet geladen.</p><input id="fileInput" type="file" accept=".pdf,.txt,.md,text/plain,application/pdf"></div>
+ <label for="docTitle">Titel der Unterlage</label><input id="docTitle" placeholder="z. B. Biologie – Zellaufbau">
+ <label for="docText">Oder Text hier einfügen</label><textarea id="docText" placeholder="Füge hier deinen Skripttext ein …"></textarea>
+ <button class="primary wide" onclick="addDocument()">Unterlage speichern & Lernmaterial erstellen</button></div>
+ <div class="section-head"><h2>Gespeicherte Unterlagen</h2></div><div id="docList"></div>
+</section>
+
+<section id="cards" class="view">
+ <div class="hero"><div class="eyebrow">WISSEN FESTIGEN</div><h1>Karteikarten</h1><p>Tippe auf die Karte, um die Antwort aufzudecken.</p></div>
+ <div id="flashArea"></div><div class="row"><button class="secondary" onclick="prevCard()">Zurück</button><button class="primary" onclick="nextCard()">Nächste Karte</button></div>
+ <div class="panel"><h3>Karteikarten erstellen</h3><p class="smallnote">Aus deinen gespeicherten Texten werden einfache Frage-Antwort-Karten anhand wichtiger Begriffe erstellt.</p><button class="secondary wide" onclick="generateCards()">Karten aus Unterlagen erstellen</button></div>
+</section>
+
+<section id="quiz" class="view">
+ <div class="hero"><div class="eyebrow">WISSENSTEST</div><h1>Prüfungstraining</h1><p>Übe mit Fragen zu deinen gespeicherten Lerninhalten.</p></div>
+ <div id="quizArea" class="panel"><div class="empty">Erstelle zuerst Karteikarten aus einer Unterlage.</div></div>
+</section>
+
+<section id="coach" class="view">
+ <div class="hero"><div class="eyebrow">FRAGEN STELLEN</div><h1>Dein Lerncoach</h1><p>Stelle Fragen zu den Texten, die du hier gespeichert hast.</p></div>
+ <div class="panel"><div id="chatlog" class="chatlog"><div class="bubble bot">Hallo! Ich kann dir beim Lernen helfen. Frage mich etwas zu deinen importierten Unterlagen. Hinweis: In dieser kostenlosen Grundversion antworte ich anhand deiner lokal gespeicherten Texte, nicht mit einem externen KI-Modell.</div></div><div class="row"><input id="question" placeholder="Deine Frage …" onkeydown="if(event.key==='Enter')askCoach()"><button class="primary" style="flex:0 0 auto" onclick="askCoach()">Senden</button></div></div>
+</section>
+
+<section id="summary" class="view">
+ <div class="hero"><div class="eyebrow">DAS WICHTIGSTE AUF EINEN BLICK</div><h1>Zusammenfassung</h1><p>Erstelle eine kompakte Übersicht deiner Unterlagen.</p></div>
+ <div class="panel"><label>Unterlage auswählen</label><select id="summarySelect"></select><button class="primary wide" onclick="makeSummary()">Zusammenfassung erstellen</button><div id="summaryOut" style="white-space:pre-wrap;line-height:1.55;margin-top:14px"></div></div>
+</section>
+
+<section id="plan" class="view">
+ <div class="hero"><div class="eyebrow">SCHRITT FÜR SCHRITT</div><h1>Dein Lernplan</h1><p>Plane kleine, realistische Lerneinheiten.</p></div>
+ <div class="panel"><h3>Neue Lerneinheit</h3><label>Thema</label><input id="taskName" placeholder="z. B. Kapitel 2 wiederholen"><label>Datum</label><input id="taskDate" type="date"><button class="primary wide" onclick="addTask()">Zum Lernplan hinzufügen</button></div><div id="taskList"></div>
+</section>
+<p class="smallnote" style="margin:22px 4px">Privatsphäre: Inhalte werden in diesem Browser lokal gespeichert. Lösche Browserdaten nicht, wenn du deine Lerninhalte behalten möchtest. Diese erste Version besitzt noch keine Cloud-Synchronisierung und keine echte generative KI-Anbindung.</p>
+</main>
+<nav>
+ <button class="active" data-tab="home" onclick="show('home')"><span>⌂</span>Start</button>
+ <button data-tab="documents" onclick="show('documents')"><span>▤</span>Unterlagen</button>
+ <button data-tab="cards" onclick="show('cards')"><span>▧</span>Karten</button>
+ <button data-tab="quiz" onclick="show('quiz')"><span>✓</span>Prüfung</button>
+ <button data-tab="coach" onclick="show('coach')"><span>✧</span>Coach</button>
+</nav>
+<script>
+const KEY='studymind_iphone_v1';
+let state=JSON.parse(localStorage.getItem(KEY)||'{"docs":[],"cards":[],"tasks":[],"done":0}');
+let cardIndex=0, revealed=false, quizIndex=0, quizScore=0, quizSet=[];
+function save(){localStorage.setItem(KEY,JSON.stringify(state));refresh()}
+function show(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));if(id==='cards')renderCard();if(id==='documents')renderDocs();if(id==='summary')fillSummarySelect();if(id==='plan')renderTasks();if(id==='quiz')renderQuiz()}
+function refresh(){document.getElementById('docCount').textContent=state.docs.length;document.getElementById('cardCount').textContent=state.cards.length;document.getElementById('doneCount').textContent=state.done;renderDocs();renderTasks();fillSummarySelect()}
+document.getElementById('fileInput').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;document.getElementById('docTitle').value=f.name.replace(/\.[^.]+$/,'');if(f.type==='text/plain'||f.name.endsWith('.md'))document.getElementById('docText').value=await f.text();else if(f.type==='application/pdf'||f.name.endsWith('.pdf')){try{await loadPdf(f)}catch(err){alert('PDF konnte nicht gelesen werden. Bitte kopiere den Text aus dem PDF und füge ihn in das Textfeld ein.')}}});
+async function loadPdf(file){if(!window.pdfjsLib){await new Promise((resolve,reject)=>{let s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';let data=new Uint8Array(await file.arrayBuffer()),pdf=await pdfjsLib.getDocument({data}).promise,all=[];for(let n=1;n<=pdf.numPages;n++){let p=await pdf.getPage(n),c=await p.getTextContent();all.push(c.items.map(x=>x.str).join(' '))}document.getElementById('docText').value=all.join('\n\n');}
+function addDocument(){let title=document.getElementById('docTitle').value.trim()||'Meine Unterlage',text=document.getElementById('docText').value.trim();if(!text){alert('Bitte wähle eine Textdatei/PDF aus oder füge Text ein.');return}if(text.length>350000){alert('Die Datei ist für diese lokale Version zu groß. Bitte teile sie in kleinere Abschnitte.');return}state.docs.push({id:Date.now(),title,text,created:new Date().toLocaleDateString('de-DE')});document.getElementById('docTitle').value='';document.getElementById('docText').value='';document.getElementById('fileInput').value='';save();alert('Unterlage gespeichert! Du kannst jetzt Lernmaterial erstellen.')}
+function renderDocs(){let el=document.getElementById('docList');if(!el)return;el.innerHTML=state.docs.length?state.docs.map(d=>`<div class="doc"><strong>${esc(d.title)}</strong><small>${d.created} · ${d.text.length.toLocaleString('de-DE')} Zeichen</small><div style="margin-top:8px"><button class="secondary" onclick="useDoc(${d.id})">Lernkarten erstellen</button> <button class="secondary danger" onclick="deleteDoc(${d.id})">Löschen</button></div></div>`).join(''):'<div class="empty">Noch keine Unterlagen vorhanden.</div>'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function deleteDoc(id){if(confirm('Unterlage wirklich löschen?')){state.docs=state.docs.filter(x=>x.id!==id);save()}}
+function useDoc(id){generateCards(id);show('cards')}
+function sentences(text){return text.replace(/\s+/g,' ').split(/(?<=[.!?])\s+/).filter(s=>s.length>45&&s.length<450)}
+function generateCards(id){let docs=id?state.docs.filter(d=>d.id===id):state.docs;if(!docs.length){alert('Bitte zuerst eine Unterlage hinzufügen.');return}let added=0;docs.forEach(d=>{let ss=sentences(d.text),seen=new Set(state.cards.map(c=>c.q));ss.slice(0,80).forEach(s=>{let words=s.match(/\b[A-ZÄÖÜ][a-zäöüß]{4,}\b/g)||[];let term=words.find(w=>!['Diese','Dieses','Damit','Dabei','Welche','Wenn','Durch','Nach','Über','Unter'].includes(w));if(term){let q='Was sagt deine Unterlage über „'+term+'“?';if(!seen.has(q)){state.cards.push({q,a:s,doc:d.title});seen.add(q);added++}}});if(!added&&ss.length){let s=ss[0],q='Erkläre die folgende Kernaussage aus „'+d.title+'“.';state.cards.push({q,a:s,doc:d.title});added++}});save();renderCard();alert(added+' neue Lernkarten erstellt.');}
+function renderCard(){let el=document.getElementById('flashArea');if(!el)return;if(!state.cards.length){el.innerHTML='<div class="empty">Noch keine Karten. Erstelle sie aus deinen Unterlagen.</div>';return}cardIndex=(cardIndex+state.cards.length)%state.cards.length;let c=state.cards[cardIndex];el.innerHTML=`<div class="smallnote">KARTE ${cardIndex+1} VON ${state.cards.length} · ${esc(c.doc||'Eigene Karte')}</div><div class="flash" onclick="flipCard()">${revealed?esc(c.a):esc(c.q)}<div style="font-size:11px;color:#9db2c5;font-weight:400;margin-top:14px">${revealed?'Antwort':'Tippen zum Aufdecken'}</div></div><button class="secondary wide" onclick="markLearned()">✓ Habe ich gelernt</button>`}
+function flipCard(){revealed=!revealed;renderCard()}function nextCard(){cardIndex=(cardIndex+1)%Math.max(1,state.cards.length);revealed=false;renderCard()}function prevCard(){cardIndex=(cardIndex-1+Math.max(1,state.cards.length))%Math.max(1,state.cards.length);revealed=false;renderCard()}function markLearned(){state.done++;save();nextCard()}
+function renderQuiz(){let el=document.getElementById('quizArea');if(!el)return;if(!quizSet.length){el.innerHTML=state.cards.length?'<button class="primary wide" onclick="startQuiz()">Prüfung starten</button>':'<div class="empty">Erstelle zuerst Karteikarten aus einer Unterlage.</div>';return}if(quizIndex>=quizSet.length){el.innerHTML=`<h3>Prüfung beendet 🎉</h3><p>Du hast ${quizScore} von ${quizSet.length} Fragen richtig beantwortet.</p><button class="primary wide" onclick="startQuiz()">Nochmal üben</button>`;quizSet=[];return}let c=quizSet[quizIndex],opts=[c.a,...state.cards.filter(x=>x!==c).slice(0,3).map(x=>x.a)].sort(()=>Math.random()-.5);el.innerHTML=`<div class="smallnote">FRAGE ${quizIndex+1} VON ${quizSet.length}</div><h3>${esc(c.q)}</h3>${opts.map((o,i)=>`<div class="answer" onclick="chooseAnswer(this,${o===c.a})">${esc(o.slice(0,220))}</div>`).join('')}<p class="smallnote" id="quizFeedback"></p>`}
+function startQuiz(){quizSet=[...state.cards].sort(()=>Math.random()-.5).slice(0,10);quizIndex=0;quizScore=0;renderQuiz()}function chooseAnswer(el,ok){if(document.querySelectorAll('.answer').length===0)return;document.querySelectorAll('.answer').forEach(x=>x.onclick=null);el.classList.add(ok?'correct':'wrong');document.getElementById('quizFeedback').textContent=ok?'Richtig!':'Nicht ganz. Lies die Antwort noch einmal.';if(ok)quizScore++;setTimeout(()=>{quizIndex++;renderQuiz()},950)}
+function fillSummarySelect(){let s=document.getElementById('summarySelect');if(!s)return;s.innerHTML=state.docs.map(d=>`<option value="${d.id}">${esc(d.title)}</option>`).join('')||'<option value="">Keine Unterlagen</option>'}
+function makeSummary(){let d=state.docs.find(x=>x.id==document.getElementById('summarySelect').value);if(!d){alert('Bitte zuerst eine Unterlage hinzufügen.');return}let ss=sentences(d.text),out=ss.slice(0,12).map((s,i)=>(i+1)+'. '+s).join('\n\n');if(!out)out=d.text.slice(0,1800);document.getElementById('summaryOut').textContent=out+'\n\nHinweis: Automatisch ausgewählte Kernaussagen – bitte mit dem Originalskript abgleichen.'}
+function askCoach(){let q=document.getElementById('question').value.trim();if(!q)return;let log=document.getElementById('chatlog');log.innerHTML+=`<div class="bubble user">${esc(q)}</div>`;let all=state.docs.map(d=>d.title+'\n'+d.text).join('\n\n'),terms=q.toLowerCase().split(/\W+/).filter(x=>x.length>3),parts=sentences(all),ranked=parts.map(s=>({s,score:terms.reduce((n,t)=>n+(s.toLowerCase().includes(t)?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,3);let answer=ranked.length?ranked.map(x=>x.s).join('\n\n'):'Ich finde dazu in deinen gespeicherten Unterlagen keine passende Textstelle. Lade weitere Notizen hoch oder formuliere deine Frage mit anderen Stichwörtern.';log.innerHTML+=`<div class="bubble bot">${esc(answer)}<div class="smallnote" style="margin-top:8px">Antwort aus deinen gespeicherten Unterlagen · keine externe KI</div></div>`;document.getElementById('question').value='';log.scrollTop=log.scrollHeight}
+function addTask(){let n=document.getElementById('taskName').value.trim(),date=document.getElementById('taskDate').value;if(!n){alert('Bitte gib ein Thema ein.');return}state.tasks.push({id:Date.now(),name:n,date,done:false});document.getElementById('taskName').value='';save()}
+function renderTasks(){let el=document.getElementById('taskList');if(!el)return;el.innerHTML=state.tasks.length?state.tasks.sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map(t=>`<div class="doc"><label><input type="checkbox" style="width:auto;margin-right:8px" ${t.done?'checked':''} onchange="toggleTask(${t.id})">${esc(t.name)}</label><small style="display:block;margin-top:6px">${t.date||'Ohne Datum'}</small></div>`).join(''):'<div class="empty">Noch keine Lerneinheiten geplant.</div>'}
+function toggleTask(id){let t=state.tasks.find(x=>x.id===id);t.done=!t.done;save()}
+refresh();
+</script>
+</body></html>
