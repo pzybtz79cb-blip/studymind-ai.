@@ -117,4 +117,17 @@ function renderTasks(){let el=document.getElementById('taskList');if(!el)return;
 function toggleTask(id){let t=state.tasks.find(x=>x.id===id);t.done=!t.done;save()}
 refresh();
 </script>
-</body></html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = "https://qbtzpwqanxenazeqiliq.supabase.co/rest/v1/";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3F-1hEJXW7GRnjsWJBLp2w_08X0nKYz";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("StudyMind AI: Supabase verbunden!");
+</script></body>
+</html>
